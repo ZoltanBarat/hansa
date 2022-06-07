@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/hansa/static/css/main.f89a9b54.css",
-    "main.js": "/hansa/static/js/main.7e9990ac.js",
+    "main.js": "/hansa/static/js/main.b6539fc5.js",
     "index.html": "/hansa/index.html",
     "main.f89a9b54.css.map": "/hansa/static/css/main.f89a9b54.css.map",
-    "main.7e9990ac.js.map": "/hansa/static/js/main.7e9990ac.js.map"
+    "main.b6539fc5.js.map": "/hansa/static/js/main.b6539fc5.js.map"
   },
   "entrypoints": [
     "static/css/main.f89a9b54.css",
-    "static/js/main.7e9990ac.js"
+    "static/js/main.b6539fc5.js"
   ]
 }
