@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/hansa/static/css/main.f89a9b54.css",
+    "main.js": "/hansa/static/js/main.81640835.js",
+    "index.html": "/hansa/index.html",
+    "main.f89a9b54.css.map": "/hansa/static/css/main.f89a9b54.css.map",
+    "main.81640835.js.map": "/hansa/static/js/main.81640835.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f89a9b54.css",
+    "static/js/main.81640835.js"
+  ]
+}
