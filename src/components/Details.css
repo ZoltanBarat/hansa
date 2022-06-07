@@ -1,0 +1,77 @@
+
+.goods-list td,
+.goods-list th {
+    padding: 5px;
+    text-align: center;
+}
+
+.goods-listContainer {
+    position: absolute;
+    width: fit-content;
+}
+
+.goods-list {
+    padding: 3%;
+    
+    display: inline-block;
+    background-color: #adc0de;
+    border-radius: 10px;
+}
+
+
+.tetelContainer {
+    display: flex;
+}
+
+.goods-list h5 {
+    margin: 2px 5px;
+}
+
+.goods-list h5 span{    
+    font-weight: normal;
+}
+
+.tetel-list thead tr{
+    background-color: #3cd070;
+}
+
+.tetel-list tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.tetel-list tbody tr:hover {
+    background-color: #8bcea3;
+}
+
+.tetel-list td,
+.tetel-list th {
+    padding: 8px;
+    text-align: center;
+}
+
+.backButton{
+    background: none;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.backButton:hover {
+    background-color: #d1d1d1;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.refreshButton{
+    background-color: #f5f268;
+    border: 1px solid black;
+    padding: 5px;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.refreshButton:hover {
+    background-color: #f3f2b2;
+}

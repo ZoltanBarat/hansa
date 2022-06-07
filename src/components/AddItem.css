@@ -1,0 +1,16 @@
+.addButton{
+    margin: 0 8px;
+    background: #3cd070;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.addButton:hover {
+    background: #19552e;
+    color: white;
+
+}
+
+.addConatainer {
+    padding: 15px 0;
+}

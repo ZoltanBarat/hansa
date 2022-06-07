@@ -1,28 +1,31 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../client';
 import { Link } from 'react-router-dom';
-import './List.css';
+import './SearchList.css';
 import Loading from './Loading';
+import { CSVLink } from "react-csv";
 
-function List(props) {
+function SearchList(props) {
 
-    const [vasarlas, setVasarlas] = useState();
+    const [filteredVasarlas, setFilteredVasarlas] = useState();
     const [range, setRange] = useState(0);
     const [error, setError] = useState();
     const [loading, setLoading] = useState(true);
-    const [shops, setShops] = useState();
     const [order, setOrder] = useState({ target: 'esemenydatumido', ascending: false });
-
     
     async function Fetching() {
-        try {            
+        try {     
+            console.log('in S-éist', props.search);
+            setLoading(true)
             const { data } = await supabase
                 .from('vasarlas')
                 .select('*', { count: 'exact' })
+                .eq(props.searchWhere, props.search)
                 .range(range, range + 250)
                 .order(order.target,  {ascending: order.ascending} )
+                
             
-            setVasarlas(data)
+            setFilteredVasarlas(data)
             setLoading(false)
             console.log('fetching')
 
@@ -31,29 +34,15 @@ function List(props) {
         }
     }
 
-    async function shopFetching() {
-        try {            
-            const { data } = await supabase
-                .from('bolt')
-                .select('*')                            
-           
-            setShops(data)
-        } catch (error) {
-            setError(error)
-        }
-    }
-
   
-    useEffect(() => {
-        shopFetching();       
-        Fetching();             
-      
+    useEffect(() => {           
+        Fetching();      
     }, [])
 
-    useEffect(() => {
-        shopFetching();        
+    useEffect(() => {       
+        setRange(0)
         Fetching();             
-    }, [order])
+    }, [order, props.search, props.searchWhere])
     
     const Next = () => {        
         setRange(range + 250);
@@ -69,13 +58,6 @@ function List(props) {
         }
     }
 
-    function findShopName (id) {
-        if (shops) {
-            const searchIndex = shops.findIndex(s => s.id === id); 
-            return shops[searchIndex].nev
-        }       
-    }
-
 
     if (error) {
         return <h1>{ error }</h1>
@@ -87,18 +69,18 @@ function List(props) {
 
     return (
         <div className='center'>
-            <h2>Vásárlás</h2>
-            <Link className='navLink' to={ '/kereses'}>Keresés</Link>
-            <div className='listNavContainer'>
+        { filteredVasarlas && <CSVLink className='filteredDownloadButton' data={filteredVasarlas} filename={`filtered_vasarlas.csv`} target='_blank'>Letöltés</CSVLink>}
+             <div className='listNavContainer'>
                 <button className='listNavButton' onClick={() => Prev()}>Prev</button>
                 <div>({ range } ... { range + 250 })</div>
                 <button className='listNavButton'onClick={()=>Next()}>Next</button>
             </div>
+
            
-            <table className='main-list'>
+            {filteredVasarlas && <table className='search-list'>
                 <thead>
                     <tr>
-                        <th>Bolt
+                        <th>Bolt ID
                             <button className={`orderButton ${order.target === 'boltid' && order.ascending === true ? '--active' : null}`} onClick={() => setOrder({ target: 'boltid', ascending: true })}>⇧</button>
                             <button className={`orderButton ${order.target === 'boltid' && order.ascending === false ? '--active' : null}`} onClick={() => setOrder({ target: 'boltid', ascending: false })}>⇩</button>
                         </th>
@@ -111,8 +93,8 @@ function List(props) {
                             <button className={`orderButton ${order.target === 'penztargepazonosito' && order.ascending === false ? '--active' : null}`} onClick={() => setOrder({ target: 'penztargepazonosito', ascending: false })}>⇩</button>
                         </th>
                         <th>Összeg
-                            <button className={`orderButton ${order.target === 'vasarlasosszeg' && order.ascending === true ? '--active' : null}`} onClick={() => setOrder({ target: 'vasarlasosszeg', ascending: true })}>⇧</button>
-                            <button className={`orderButton ${order.target === 'vasarlasosszeg' && order.ascending === false ? '--active' : null}`} onClick={() => setOrder({ target: 'vasarlasosszeg', ascending: false })}>⇩</button>
+                            <button className={`orderButton ${order.target === 'vasarlasosszeg' && order.ascending === true ? '--active' : null}`} onClick={() => setOrder({ target: 'filteredVasarlasosszeg', ascending: true })}>⇧</button>
+                            <button className={`orderButton ${order.target === 'vasarlasosszeg' && order.ascending === false ? '--active' : null}`} onClick={() => setOrder({ target: 'filteredVasarlasosszeg', ascending: false })}>⇩</button>
                         </th>
                         <th>Részletek                      
                         </th>
@@ -120,12 +102,12 @@ function List(props) {
                 </thead>
            
                     <tbody>
-                        { vasarlas.map((item, index) => (
+                        { filteredVasarlas.map((item, index) => (
                             <tr key={index}>
-                                <td>{findShopName(item.boltid)}</td>
+                                <td>{item.boltid}</td>
                                 <td>{item.esemenydatumido.replace('T', ' ')}</td>
                                 <td>{item.penztargepazonosito}</td>
-                                <td>{item.vasarlasosszeg} <i>HUF</i></td>
+                              <td>{item.vasarlasosszeg} <i>HUF</i></td>
                                 <td><Link
                                     onClick={() => props.setItemId(item.id)}                                   
                                     to={`/vasarlasi_tetel/${item.id}`}
@@ -134,10 +116,10 @@ function List(props) {
                         ))}
                     </tbody>
                 
-            </table>
+            </table>}
            
         </div>
     )
 }
 
-export default List
+export default SearchList

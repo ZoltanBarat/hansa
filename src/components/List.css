@@ -1,0 +1,67 @@
+.main-list tr:nth-child(even) {
+    background-color: #f2f2f2;
+} 
+
+.main-list tbody tr:hover {
+    background-color: #bbdeec;
+}
+
+.main-list td, .main-list th {
+    padding: 8px;
+    text-align: center;
+}
+
+.loading {
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10%;
+}
+
+.listNavContainer {
+    display: flex;
+    margin: 15px;
+    justify-content: center;
+}
+
+.listNavContainer div{
+    padding: 10px 0;
+}
+
+.listNavButton{
+    margin: 0px 8px;
+}
+
+.main-list thead tr{
+    background-color: #71c7ec;
+}
+
+.listNavButton {
+    background-color: #71c7ec;
+    border: none;
+    padding: 0px 15px;
+    cursor: pointer;
+
+}
+
+.listNavButton:hover {
+    background-color: #0a74a1;
+}
+
+.orderButton {
+    color: white;
+    background-color: #3284a7;
+    border: 1px solid black;
+    border-radius: 3px;
+    margin: 0 2px;
+}
+
+.orderButton:hover {
+    background-color: #54a8cc;
+}
+
+.--active {
+    background-color: #a4c7d6;
+}

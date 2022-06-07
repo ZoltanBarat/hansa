@@ -1,0 +1,21 @@
+.search-list tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.search-list tbody tr:hover {
+    background-color: #e9d5b6;
+}
+
+.search-list td,
+.search-list th {
+    padding: 8px;
+    text-align: center;
+}
+
+.search-list thead tr {
+    background-color: #ecbb71;
+}
+
+.filteredDownloadButton {
+    float: right;
+}
