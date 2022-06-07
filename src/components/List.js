@@ -24,7 +24,6 @@ function List(props) {
             
             setVasarlas(data)
             setLoading(false)
-            console.log('fetching')
 
         } catch (error) {
             setError(error)

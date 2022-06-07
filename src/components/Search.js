@@ -11,7 +11,8 @@ function List(props) {
     return (
         <div className='center'>
             <h2>Keresés</h2>
-            <Link className='navLink' to={ '/'}>Fő tábla</Link>
+            <Link className='navLink' to={'/hansa'}>Fő tábla</Link>
+            
             <div className='searchContainer'>
                 <form>
                     <select onChange={(e)=> setSearchWhere(e.target.value)}>
@@ -21,7 +22,7 @@ function List(props) {
                         <option value='vasarlasosszeg'>Összeg</option>
                     </select>
                     <span>=</span>
-                    <input onChange={(e) => { setSearch(e.target.value); console.log(search)}}></input>
+                    <input onChange={(e) => setSearch(e.target.value)}></input>
 
                 </form>                
             </div>

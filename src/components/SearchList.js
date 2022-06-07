@@ -14,8 +14,7 @@ function SearchList(props) {
     const [order, setOrder] = useState({ target: 'esemenydatumido', ascending: false });
     
     async function Fetching() {
-        try {     
-            console.log('in S-éist', props.search);
+        try {             
             setLoading(true)
             const { data } = await supabase
                 .from('vasarlas')
@@ -26,8 +25,7 @@ function SearchList(props) {
                 
             
             setFilteredVasarlas(data)
-            setLoading(false)
-            console.log('fetching')
+            setLoading(false)           
 
         } catch (error) {
             setError(error)

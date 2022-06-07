@@ -33,36 +33,15 @@ function AddItem(props) {
                         vasarlasid: props.vasarlasid,
                         brutto: parseInt(selectedGood.split(',')[1])
                     }
-                ])
-                
-                .then(mySubscription)
+                ])                            
             
-
         } catch (error) {
             setError(error)
         }
     }
 
-    const mySubscription = supabase
-                .from('vasarlas_tetel')
-                .on('INSERT', payload => {
-                    console.log('Change received!', payload)
-                })
-                .subscribe()
-
-
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(e)
-        console.log('selectedGood: ', selectedGood)
-        console.log(typeof selectedGood)
-        console.log(   {
-                        mennyiseg: 1,
-                        partnerctid: parseInt(selectedGood.split(',')[0]),
-                        partnerid: props.partnerid,
-                        vasarlasid: props.vasarlasid,
-                        brutto: parseInt(selectedGood.split(',')[1])
-                    })
         Add();        
     }
 

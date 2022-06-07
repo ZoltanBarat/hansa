@@ -17,7 +17,7 @@ function App() {
 
       <Routes>
         <Route
-          path={'/'}
+          path={'/hansa'}
           element={<List setItemId={ setItemId }/>}
         />
 
